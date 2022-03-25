@@ -1,0 +1,84 @@
+.container-view {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 110px;
+}
+
+.container__form {
+    width: 90%;
+    box-sizing: border-box;
+    max-width: 700px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    border: 1px solid #a9607e;
+}
+
+
+.form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    
+
+}
+
+.input {
+    height: 30px;
+    font-size: 18px;
+    border-radius: 3px;
+    padding: 2px 7px;
+    background-color: #41106c;
+    color: #fff;
+    border: solid 1px rgba(70, 36, 76, .5);
+    outline: none;
+}
+
+.input:focus {
+    box-shadow: 0px 0px 3px 0px rgba(255,255,255,0.75);
+}
+
+.input-check {
+    margin: 7px;
+    padding: 7px;
+    cursor: pointer;
+    position: relative;
+}
+
+.back-input-check {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #8e6a93;
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.name-input-check {
+    opacity: 0.7;
+}
+
+
+
+.input-check input:checked ~ .name-input-check {
+    opacity: 1;
+    font-weight: 500;
+}
+.input-check input:checked ~ .back-input-check {
+    border: 1px solid #a079a5;
+    box-shadow: 0px 0px 3px 0px rgba(255,255,255,0.75);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+
