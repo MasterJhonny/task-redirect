@@ -5,7 +5,7 @@ import './Alarma.css'
 
 const API_URL = 'https://back-task-redirect.herokuapp.com/api/v1/tasks'
 
-function Alarma({ id, name, hora, diferencia, tasks, setTasks}) {
+function Alarma({ id, name, url, hora, diferencia, tasks, setTasks}) {
 
     async function deleteAlarma() {
         const response = await fetch(`${API_URL}/${id}`, {
@@ -23,7 +23,9 @@ function Alarma({ id, name, hora, diferencia, tasks, setTasks}) {
 
     return (
         <div className="item">
-            <span className="text">{name}</span>
+            <a target="_blank" href={url} className="item-link">
+                <span className="text">{name}</span>
+            </a>
             {diferencia > 0 ? <Progress diferencia={diferencia}/> : null}
             <span className="time">{hora}</span>
             <span className="icon icon-delete" onClick={deleteAlarma}></span>

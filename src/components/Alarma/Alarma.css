@@ -14,9 +14,14 @@
     border-radius: 5px;
 }
 
-.text {
+.item-link {
     width: 180px;
 }
+
+.item-link:hover {
+    color: #ffd337;
+}
+
 
 .time {
     width: 70px;
@@ -98,7 +103,7 @@
         width: 70px;
         height: 70px;
     }
-    .text {
+    .item-link {
         flex: 2;
     }
     

@@ -18,6 +18,7 @@ function Tasks({ list }) {
                     key={item.id}
                     id={item.id}
                     name={item.title}
+                    url={item.url}
                     hora={item.time}
                     diferencia={item.diferencia}
                     tasks={tasks}
