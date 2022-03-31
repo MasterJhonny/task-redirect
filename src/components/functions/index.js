@@ -13,7 +13,7 @@ const utils = {
 
                 if(diferencia > 0) {
                     setTimeout(() => {
-                        window.open(item.url)
+                        window.open(item.url,"view","width=1920,height=1080")
                     }, diferencia)
         
                 } else {

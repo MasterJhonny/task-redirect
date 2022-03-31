@@ -8,17 +8,23 @@ const API_URL = 'https://back-task-redirect.herokuapp.com/api/v1/tasks'
 function Alarma({ id, name, url, hora, diferencia, tasks, setTasks}) {
 
     async function deleteAlarma() {
-        const response = await fetch(`${API_URL}/${id}`, {
-            method: 'DELETE'
-        })
-        await response.json()
 
-        const newTasks = tasks.filter(task => {
-            if(task.id !== id) {
-                return task;
-            }
-        })
-        setTasks(newTasks)
+        const valor = confirm(`Deleted Redirect ${name}`)
+
+        if(valor) {
+
+            const response = await fetch(`${API_URL}/${id}`, {
+                method: 'DELETE'
+            })
+            await response.json()
+    
+            const newTasks = tasks.filter(task => {
+                if(task.id !== id) {
+                    return task;
+                }
+            })
+            setTasks(newTasks)
+        } 
     }
 
     return (
