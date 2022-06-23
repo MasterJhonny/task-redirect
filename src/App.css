@@ -8,6 +8,10 @@
     z-index: 1;
 }
 
+.hora {
+    font-size: 26px;
+}
+
 .back-coonter {  
     width: 100vw;
     height: 60px;
@@ -17,9 +21,7 @@
     left: 0;
 }
 
-.counter p {
-    font-size: 20px;
-}
+
 
 a {
     text-decoration: none;
@@ -39,11 +41,31 @@ p {
 
 .img-container {
     width: 120px;
+    min-height: 120px;
     margin: 0 auto;
     border-radius: 50%;
     border: solid 3px rgba(255, 211, 55, 0.5);
     box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.2);
+    animation-name: blink;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
 }
+
+@keyframes blink {
+    0% { 
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    50% { 
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+    75% {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+
 
 .img {
     box-sizing: border-box;
