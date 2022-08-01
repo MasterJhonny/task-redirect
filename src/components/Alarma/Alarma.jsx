@@ -13,7 +13,6 @@ function Alarma({ id, name, url, hora, diferencia, tasks, setTasks}) {
         if(valor) {
 
             const API_URL = `${config.API_BASE_URL}tasks/${id}`
-
             const response = await fetch(API_URL, {
                 method: 'DELETE'
             })

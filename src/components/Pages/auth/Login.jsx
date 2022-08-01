@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { isAuthent } from "../../hooks/useFech";
-import { functions } from '../../functions'
+import { functions } from '../../functions';
+import { config } from "../../../config";
 // import { ContextUser } from '../Contexts/ContextUser'
 // import { isAuthent } from '../hooks/useUser'
 
@@ -22,9 +23,10 @@ function Login({ setData }) {
     // create new user
     const loginUser = async (data) => {
         const {email, password} = data;
+        const API_URL = `${config.API_BASE_URL}users/login/`
         if(email && password){
             try {
-                const response = await fetch('http://localhost:8080/api/v1/users/login', {
+                const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json;charset=utf-8"

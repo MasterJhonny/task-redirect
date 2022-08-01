@@ -1,5 +1,5 @@
 const config = {
-    API_BASE_URL: 'http://localhost:8080/api/v1/'
+    API_BASE_URL: 'https://back-task-redirect.herokuapp.com/'
 }
 
 export { config };

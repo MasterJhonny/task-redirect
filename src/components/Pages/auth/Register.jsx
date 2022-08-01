@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { isAuthent } from "../../hooks/useFech";
 import { functions } from "../../functions";
+import { config } from "../../../config";
 
 import "./auth.css";
 
@@ -20,7 +21,9 @@ function Register({ setData }) {
   // create new user
   const signupUser = async (data) => {
     const { name, email, password, avatar } = data;
+    
     if (name && email && password && avatar) {
+      const API_URL = `${config.API_BASE_URL}users/register/`
       const formData = new FormData();
       formData.append("name", name);
       formData.append("email", email);
@@ -29,7 +32,7 @@ function Register({ setData }) {
 
       try {
         const response = await fetch(
-          "http://localhost:8080/api/v1/users/register",
+          API_URL,
           {
             method: "POST",
             // headers: {
