@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 
 import { useNavigate } from "react-router-dom";
 
+import { config } from "../../../config";
 
-const API_URL = 'https://back-task-redirect.herokuapp.com/api/v1/tasks'
+
+const API_URL = `${config.API_BASE_URL}tasks/`
 
 
-function CreateAlarm() {
+function CreateAlarm({id}) {
 
     const [newDateAlarm, setNewDateAlarm] = useState({})
 
@@ -26,10 +28,7 @@ function CreateAlarm() {
             const index = days.indexOf(day)
             days.splice(index, 1)
         }
-
         setDays(days)
-
-
         setNewDateAlarm({
             ...newDateAlarm,
             [valor.name]: days
@@ -61,7 +60,8 @@ function CreateAlarm() {
                 },
                 body: JSON.stringify({
                     ...newDateAlarm,
-                    color: 'E4AEC5'
+                    color: 'E4AEC5',
+                    userId: id
                 })
             });
 

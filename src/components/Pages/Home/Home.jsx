@@ -1,28 +1,37 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { Link, Navigate } from "react-router-dom";
+
+import { config } from "../../../config";
 
 import { Tasks } from '../../Alarma/Tasks'
 import { Avatar } from '../../Avatar'
 import { Loanding } from '../../Loanding'
+import { Message } from "./message";
 import { utils } from '../../functions'
 import { ContextStateMgsProvider } from '../../contexts/context.state.mgs'
 
 import './Home.css'
 
-const API_URL = 'https://back-task-redirect.herokuapp.com/api/v1/tasks'
 
-function Home() {
+
+function Home({ user }) {
 
     const [list, setList] = useState([])
 
     const [stateMgs, setStateMgs] = useState('')
 
+    const [statusHome, setStatusHome] = useState('');
+
     async function getTasks() {
+
+        const API_URL = `${config.API_BASE_URL}tasks/${user.id}`
+
         try {
             const response = await fetch(API_URL);
             const data = await response.json();
             const newData = utils.runAlarma(data.reverse())
             setList(newData)
+            setStatusHome('ok!')
         } catch (error) {
             console.error('Ups!!! sucedio un error.', error)
         }
@@ -35,13 +44,17 @@ function Home() {
     }, [stateMgs]);
 
     return (
-        <React.Fragment>
+        <>
             <ContextStateMgsProvider value={{ stateMgs, setStateMgs }}>
-            <Avatar/>
-            {list.length > 0 ? <Tasks list={list}/> : <Loanding/>}
+                <Avatar urlImg={user.avatar}/>
+                {   
+                    list.length > 0 ? 
+                    <Tasks list={list} name={user.name}/> :
+                    statusHome === "ok!" ? <Message name={user.name} message='No tienes ningun link creado'/> : <Loanding/> 
+                }
             </ContextStateMgsProvider>
             <Link to='/add' className="btn btn-created">+</Link>
-        </React.Fragment>
+        </>
     );
 }
 

@@ -1,3 +1,6 @@
+
+
+
 .view {
     width: 100%;
     margin-top: 40px;
@@ -15,7 +18,7 @@ ul {
 
 .btn {
     height: 40px;
-    background-color: #ff7179;
+    background-color: #fa7076;
     color: #ffff;
     border-radius: 7px;
     text-align: center;
@@ -24,9 +27,18 @@ ul {
     cursor: pointer;
     border: 0;
 }
+
+.btn:hover {
+    background-color: #f37676;
+}
+
 .btn:active {
     background-color: #f5525a;
     box-shadow: 0px 0px 3px 0px rgba(255,255,255,0.75);
+}
+
+.btn-link {
+    padding: 0 10px;
 }
 
 .btn-created {
@@ -41,7 +53,7 @@ ul {
 .btn-back {
     width: 40px;
     position: fixed;
-    top: 67px;
+    top: 76px;
     left: 30px;
     background-image: url(https://i.postimg.cc/d3VzvfZ0/chevron-left.png);
     background-repeat: no-repeat;

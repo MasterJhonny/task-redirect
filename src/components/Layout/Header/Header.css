@@ -1,7 +1,6 @@
 .header {
     box-sizing: border-box;
     width: 100%;
-    height: 60px;
     background-color: #40106b;
     border: 1px solid #7e428a;
     position: fixed;

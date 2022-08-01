@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+
 
 function Loanding() {
+
+    
+
     return (
         <div className="load">
             <span className="load-box">

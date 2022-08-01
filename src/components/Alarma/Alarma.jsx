@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Progress } from './Progress';
+import { config } from "../../config";
 
-import { Progress } from './Progress'
 import './Alarma.css'
-
-const API_URL = 'https://back-task-redirect.herokuapp.com/api/v1/tasks'
 
 function Alarma({ id, name, url, hora, diferencia, tasks, setTasks}) {
 
@@ -13,7 +12,9 @@ function Alarma({ id, name, url, hora, diferencia, tasks, setTasks}) {
 
         if(valor) {
 
-            const response = await fetch(`${API_URL}/${id}`, {
+            const API_URL = `${config.API_BASE_URL}tasks/${id}`
+
+            const response = await fetch(API_URL, {
                 method: 'DELETE'
             })
             await response.json()

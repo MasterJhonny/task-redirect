@@ -1,8 +1,8 @@
 import React from 'react'
 
-const urlImg = 'https://i.postimg.cc/gjc5Cfh3/foto.jpg'
+// const urlImg = 'https://i.postimg.cc/gjc5Cfh3/foto.jpg'
 
-function Avatar() {
+function Avatar({ urlImg }) {
     return (  
         <div className="img-div">
             <div className="img-container">

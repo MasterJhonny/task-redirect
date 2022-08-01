@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { Alarma } from './Alarma'
 
-function Tasks({ list }) {
+function Tasks({ list, name }) {
 
     const [tasks, setTasks] = useState(list)
 
@@ -12,7 +12,7 @@ function Tasks({ list }) {
 
     return (
         <section className="view">
-            <h2>Hi, Jhonny! &#128522;</h2>
+            <h2>Hi, {name}! &#128522;</h2>
             {tasks.map(item => (
                 <Alarma
                     key={item.id}

@@ -35,7 +35,28 @@ const utils = {
         })
         return duration;
 
-    } 
+    }
+    
 }
 
-export { utils };
+
+const functions = {
+    saveCookies: function(name, token) {
+        document.cookie = `${name}=${token}`;
+    },
+    readCookies: function(name) {
+        const cookies = document.cookie.split(';');
+        const verifyCookie = cookies.find(item  => item.includes(name));
+        if(!verifyCookie) {
+          return false;  
+        }
+        return verifyCookie.replace(`${name}=`, '');
+    },
+    deleteCookies: function() {
+        document.cookie = 'auth=;expires=Thu, 01 Jan 1970 00:00:00 GMT'
+    }
+}
+
+
+
+export { utils, functions };

@@ -1,24 +1,42 @@
-import React, { useState } from 'react'
-import { Routes, Route, Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { Routes, Route, Navigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import { isAuthent } from "./components/hooks/useFech";
 
 import './App.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Header } from './components/Layout/Header/Header'
 import { Home } from './components/Pages/Home/Home'
 import { Add } from './components/Pages/Add/Add'; 
-import { CreateAlarm } from './components/Pages/Add/CreateAlarm'
+import { Register } from './components/Pages/auth/Register'
+import { Login } from './components/Pages/auth/Login';
+import { Loanding } from "./components/Loanding";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState({ auth: false });
+
+  const [loanding, setLoanding] = useState(true);
+
+  setTimeout(() => {
+    setLoanding(false);
+  }, 2000) 
+
+  useEffect(() => {
+    isAuthent(setData);
+  }, [])
 
   return (
 
     <React.Fragment>
-        <Header/>
+        <Header user={data} setData={setData}/>
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/add" element={<Add/>}/>
+          <Route path="/" element={ data.auth ? <Home user={data} /> : loanding ? <Loanding/> : <Navigate to="/login"/> }/>
+          <Route path="/add" element={<Add user={data}/>}/>
+          <Route path="/register" element={<Register setData={setData}/>}/>
+          <Route path="/login" element={<Login setData={setData}/>}/>
         </Routes>
+        <ToastContainer/>
     </React.Fragment>
   )
 }

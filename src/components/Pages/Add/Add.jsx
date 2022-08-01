@@ -5,11 +5,11 @@ import { CreateAlarm } from './CreateAlarm'
 
 import './Add.css'
 
-function Add() {
+function Add({ user }) {
     return (
         <React.Fragment>
             <section className="view">
-                <CreateAlarm/>
+                <CreateAlarm id={user.id} />
             </section>
             <Link className="btn btn-back" to='/'></Link>
         </React.Fragment>

@@ -1,0 +1,156 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { isAuthent } from "../../hooks/useFech";
+import { functions } from "../../functions";
+
+import "./auth.css";
+
+function Register({ setData }) {
+  // use navegation for nav to pages
+  const nav = useNavigate();
+
+  //state new user signup
+  const [userRegister, setUserRegister] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  // create new user
+  const signupUser = async (data) => {
+    const { name, email, password, avatar } = data;
+    if (name && email && password && avatar) {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("avatar", avatar);
+
+      try {
+        const response = await fetch(
+          "http://localhost:8080/api/v1/users/register",
+          {
+            method: "POST",
+            // headers: {
+            //     "Content-Type": "application/json;charset=utf-8"
+            // },
+            // body: JSON.stringify({
+            //     name,
+            //     email,
+            //     password,
+            // }),
+            body: formData,
+          }
+        );
+        const rta = await response.json();
+        if (rta.auth) {
+          const cookieOptions = {
+            expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+            httpOnly: true,
+          };
+          toast.success("Register success!");
+          functions.saveCookies("auth", rta.token);
+
+          isAuthent(setData);
+          setTimeout(() => {
+            nav("/");
+          }, 2000);
+        } else {
+          toast.error("Data invalid!");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+        toast.warning("Data incomplete!");
+    }
+  };
+
+  // update data users on change
+  const onChangeData = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    if (name === "avatar") {
+      setUserRegister({
+        ...userRegister,
+        [name]: e.target.files[0],
+      });
+    } else {
+      setUserRegister({
+        ...userRegister,
+        [name]: value,
+      });
+    }
+  };
+
+  // on onSubmit post form
+  const onsubmitAction = (e) => {
+    e.preventDefault();
+    signupUser(userRegister);
+  };
+
+  return (
+    <div className="main">
+      <div className="container__form main-login">
+        <picture className="main-logo">
+          <img src="https://www.svgrepo.com/show/241679/link.svg" alt="logo" />
+        </picture>
+        <h2 className="main-title">Register</h2>
+        <form className="form-signup" onSubmit={onsubmitAction} method="post">
+          <label>
+            <input
+              className="input input-auth"
+              type="text"
+              name="name"
+              placeholder="Usename"
+              autoFocus
+              onChange={onChangeData}
+              autoComplete="name"
+              required
+            />
+          </label>
+          <br />
+          <label>
+            <input
+              className="input input-auth"
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={onChangeData}
+              autoComplete="email"
+              required
+            />
+          </label>
+          <br />
+          <label>
+            <input
+              className="input input-auth"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={onChangeData}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            <input
+              className="input input-auth"
+              type="file"
+              name="avatar"
+              accept=".png,.jpg"
+              placeholder="Avatar"
+              onChange={onChangeData}
+              required
+            />
+          </label>
+          <br />
+          <button className="btn-send">enviar</button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export { Register };
