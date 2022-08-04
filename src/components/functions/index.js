@@ -42,7 +42,8 @@ const utils = {
 
 const functions = {
     saveCookies: function(name, token) {
-        document.cookie = `${name}=${token}`;
+        const date =  new Date(Date.now() + 360 * 24 * 60 * 60 * 1000);
+        document.cookie = `${name}=${token};expires=${date}`;
     },
     readCookies: function(name) {
         const cookies = document.cookie.split(';');

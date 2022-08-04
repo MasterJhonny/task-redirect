@@ -19,6 +19,7 @@ ul {
 .btn {
     height: 40px;
     background-color: #fa7076;
+    font-family: 'Lato', sans-serif;
     color: #ffff;
     border-radius: 7px;
     text-align: center;

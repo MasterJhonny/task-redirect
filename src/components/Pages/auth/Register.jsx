@@ -11,6 +11,9 @@ function Register({ setData }) {
   // use navegation for nav to pages
   const nav = useNavigate();
 
+  // state load 
+  const [state, setState] = useState("");
+
   //state new user signup
   const [userRegister, setUserRegister] = useState({
     name: "",
@@ -30,6 +33,7 @@ function Register({ setData }) {
       formData.append("password", password);
       formData.append("avatar", avatar);
 
+      setState('load');
       try {
         const response = await fetch(
           API_URL,
@@ -48,11 +52,10 @@ function Register({ setData }) {
         );
         const rta = await response.json();
         if (rta.auth) {
-          const cookieOptions = {
-            expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-            httpOnly: true,
-          };
-          toast.success("Register success!");
+          toast.success("Register success!", {
+            autoClose: 1500,
+            pauseOnHover: false
+        });
           functions.saveCookies("auth", rta.token);
 
           isAuthent(setData);
@@ -60,7 +63,12 @@ function Register({ setData }) {
             nav("/");
           }, 2000);
         } else {
-          toast.error("Data invalid!");
+          toast.error("Data invalid!", {
+            autoClose: 1500,
+            pauseOnHover: false,
+            hideProgressBar: true
+          });
+          setState('err');
         }
       } catch (error) {
         console.error(error);
@@ -149,7 +157,11 @@ function Register({ setData }) {
             />
           </label>
           <br />
-          <button className="btn-send">enviar</button>
+          {
+            state === 'load' ? 
+            <button className="btn btn-desactive" disabled >Cargando...</button> : 
+            <button className="btn btn-send" >Enviar</button>  
+          }
         </form>
       </div>
     </div>

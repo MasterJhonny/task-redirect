@@ -13,6 +13,8 @@ function Login({ setData }) {
 
     // use navegation for nav to pages
     const nav = useNavigate();
+
+    const [state, setState] = useState("");
     
     //state new user signup
     const [userLogin, setUserLogin] = useState({
@@ -25,6 +27,7 @@ function Login({ setData }) {
         const {email, password} = data;
         const API_URL = `${config.API_BASE_URL}users/login/`
         if(email && password){
+            setState('load');
             try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
@@ -38,11 +41,10 @@ function Login({ setData }) {
                 })
                 const rta = await response.json();
                 if(rta.auth) {
-                    const cookieOptions = {
-                        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-                        httpOnly: true
-                    }
-                    toast.success("Login success!")
+                    toast.success("Login success!", {
+                        autoClose: 1500,
+                        pauseOnHover: false
+                    })
                     functions.saveCookies('auth', rta.token)
 
                     isAuthent(setData)
@@ -51,7 +53,12 @@ function Login({ setData }) {
                     }, 2000)
 
                 } else {
-                    toast.error("Data invalid!")
+                    toast.error("Data invalid!", {
+                        autoClose: 1500,
+                        pauseOnHover: false,
+                        hideProgressBar: true
+                    })
+                    setState('err')
                 }
             } catch (error) {
                 console.error(error)
@@ -95,7 +102,11 @@ function Login({ setData }) {
                         <input className="input input-auth" type="password" name="password" placeholder="Password" onChange={onChangeData}/>
                     </label>
                     <br/>
-                    <button className="btn-send" >enviar</button>
+                    {
+                        state === 'load' ? 
+                        <button className="btn btn-desactive" disabled >Cargando...</button> : 
+                        <button className="btn btn-send" >Enviar</button>  
+                    }
                 </form>
                 
             </div>

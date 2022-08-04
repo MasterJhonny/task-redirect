@@ -46,20 +46,29 @@
 .btn-send {
     display: block;
     padding: 10px 0;
-    font-size: 18px;
-    font-family: 'Lato', sans-serif;
-    background-color: #ff7179;
-    color: #ffff;
-    border-radius: 3px;
     border: 0;
     cursor: pointer;
     text-decoration: none;
+    border-radius: 3px;
+    line-height: 0;
 }
 .btn-send:hover {
-    background-color: #DF7861;
+    background-color: #c96149;
 }
 
 .btn-send:active {
     background-color: #f5525a;
     box-shadow: 0px 0px 3px 0px rgba(255,255,255,0.75);
+}
+
+.btn-desactive {
+    cursor: not-allowed;
+}
+
+.btn-desactive:hover {
+    background-color: #fa7076;
+}
+
+.btn-desactive:active {
+    box-shadow: 0px 0px 3px 0px rgba(255, 255, 255, 0.1);
 }
