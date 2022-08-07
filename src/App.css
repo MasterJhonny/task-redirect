@@ -61,6 +61,16 @@ p {
     height: 100%;
 }
 
+.btn-edit {
+    padding: 5px;
+    background-image: url(https://img.icons8.com/material-outlined/24/FFFFFF/pencil--v2.png);
+    background-repeat: no-repeat;
+    background-size: 15%;
+    background-position: left;
+    margin-left: 20px;
+    padding-left: 30px;
+}
+
 @keyframes blink {
     0% { 
         background-color: rgba(255, 255, 255, 0.2);
