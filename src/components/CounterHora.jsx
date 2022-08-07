@@ -1,10 +1,10 @@
-import React, { useState }from 'react';
+import React, { useState, useRef }from 'react';
 import moment from 'moment';
 
 let hora = null;
 
 
-function CounterHora() {
+function CounterHora({ useContainer }) {
     
     const [state, setState] = useState(0);
 
@@ -15,12 +15,9 @@ function CounterHora() {
     }, 1000) 
     
     return (
-        <React.Fragment>
-            <div className="counter">
-                <p className="hora">{hora}</p>
-            </div>
-            <span className="back-coonter"></span>
-        </React.Fragment>
+        <div ref={useContainer} className="counter">
+            <p className="hora">{hora}</p>
+        </div>
     );
 }
 

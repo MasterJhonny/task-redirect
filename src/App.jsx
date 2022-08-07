@@ -12,6 +12,7 @@ import { Add } from './components/Pages/Add/Add';
 import { Register } from './components/Pages/auth/Register'
 import { Login } from './components/Pages/auth/Login';
 import { Loanding } from "./components/Loanding";
+import { Schedule } from "./components/Pages/Schedule";
 
 function App() {
   const [data, setData] = useState({ auth: false });
@@ -35,6 +36,7 @@ function App() {
           <Route path="/add" element={<Add user={data}/>}/>
           <Route path="/register" element={<Register setData={setData}/>}/>
           <Route path="/login" element={<Login setData={setData}/>}/>
+          <Route path="/schedule" element={<Schedule user={data}/>}/>
         </Routes>
         <ToastContainer/>
     </React.Fragment>
