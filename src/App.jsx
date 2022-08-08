@@ -36,7 +36,7 @@ function App() {
           <Route path="/add" element={<Add user={data}/>}/>
           <Route path="/register" element={<Register setData={setData}/>}/>
           <Route path="/login" element={<Login setData={setData}/>}/>
-          <Route path="/schedule" element={<Schedule user={data}/>}/>
+          <Route path="/schedule" element={<Schedule user={data} setData={setData}/>}/>
         </Routes>
         <ToastContainer/>
     </React.Fragment>

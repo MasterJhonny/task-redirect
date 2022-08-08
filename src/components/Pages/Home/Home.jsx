@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Navigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 import { config } from "../../../config";
 
@@ -33,14 +34,18 @@ function Home({ user }) {
             setList(newData)
             setStatusHome('ok!')
         } catch (error) {
-            console.error('Ups!!! sucedio un error.', error)
+            console.error('Ups!!! sucedio un error.', error);
+            setStatusHome('error');
+            toast.error('Ocurrio un error', {
+                autoClose: 1500,
+                pauseOnHover: false,
+                hideProgressBar: true
+            })
         }
     }
     
     useEffect(() => {
-        
         getTasks();
-
     }, [stateMgs]);
 
     return (
@@ -50,7 +55,8 @@ function Home({ user }) {
                 {   
                     list.length > 0 ? 
                     <Tasks list={list} name={user.name}/> :
-                    statusHome === "ok!" ? <Message name={user.name} message='No tienes ningun link creado'/> : <Loanding/> 
+                    statusHome === "ok!" ? <Message name={user.name} message='No tienes ningun link creado'/> : 
+                    statusHome === "error" ? <p className='hora'>Ups! {user.name} &#128517;, sucedio un error, recarga la pagina, por favor.</p> :<Loanding/> 
                 }
             </ContextStateMgsProvider>
             <Link to='/add' className="btn btn-created">+</Link>

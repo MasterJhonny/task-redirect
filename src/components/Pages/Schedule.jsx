@@ -3,7 +3,7 @@ import { config } from "../../config";
 
 const url = "https://i.postimg.cc/L8WsQc0n/horario.png";
 
-function Schedule({ user }) {
+function Schedule({ user, setData }) {
   const useFile = useRef();
   const useImg = useRef();
   
@@ -19,15 +19,15 @@ function Schedule({ user }) {
     const API_URL = `${config.API_BASE_URL}users/schedule/${user.id}`;
     const formData = new FormData();
     formData.append("schedule", file);
-    
 
     fetch(API_URL, {
       method: 'PATCH',
       body: formData
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => setData(data))
     .catch(err => console.error('Ups!, sucedio un error.', err)) 
+    
   } 
 
   function loadImage() {
@@ -62,6 +62,8 @@ function Schedule({ user }) {
           src={user.schedule ? user.schedule : url}
           alt="image from horario"
         />
+
+
       </picture>
     </div>
   );

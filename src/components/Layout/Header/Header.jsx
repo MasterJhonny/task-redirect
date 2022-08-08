@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import React, { useRef} from 'react';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CounterHora } from '../../CounterHora';
 import { functions } from "../../functions";
 
@@ -8,14 +8,15 @@ import './Header.css'
 function Header({ user, setData }) {
 
     const locateRouter = useLocation();
+    const nav = useNavigate();
     const useBtn = useRef();
     const useNav = useRef();
 
     function onLoguot() {
         functions.deleteCookies();
         console.log('loguot!');
-
-        setData({ auth: false })
+        setData({ auth: false });
+        nav('/login');
         
     }
 
@@ -35,7 +36,7 @@ function Header({ user, setData }) {
     return (
         <header className="header">
             <div className="header__up">
-                <Link to="/" ><h2>App Redirect</h2></Link> 
+                <Link to="/" ><h2>Links</h2></Link> 
                 <nav ref={useNav} className="nav">
                     {
                         user.auth ? 
