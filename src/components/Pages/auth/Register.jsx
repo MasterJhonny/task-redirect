@@ -110,6 +110,7 @@ function Register({ setData }) {
         <h2 className="main-title">Register</h2>
         <form className="form-signup" onSubmit={onsubmitAction} method="post">
           <label>
+            <span className="text-input">Nombre de usuario:</span>
             <input
               className="input input-auth"
               type="text"
@@ -123,6 +124,7 @@ function Register({ setData }) {
           </label>
           <br />
           <label>
+            <span className="text-input">Email:</span>
             <input
               className="input input-auth"
               type="email"
@@ -135,6 +137,7 @@ function Register({ setData }) {
           </label>
           <br />
           <label>
+            <span className="text-input">Contraseña:</span>
             <input
               className="input input-auth"
               type="password"
@@ -146,6 +149,7 @@ function Register({ setData }) {
           </label>
           <br />
           <label>
+            <span className="text-input">Foto de Perfil:</span>
             <input
               className="input input-auth"
               type="file"
