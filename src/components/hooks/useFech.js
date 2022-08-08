@@ -14,7 +14,6 @@ async function isAuthent (callback) {
                 }
             });
             const data = await res.json();
-            console.log(data)
             callback(data);
         } catch (error) {
             console.error('Ups, un error!!', error);
