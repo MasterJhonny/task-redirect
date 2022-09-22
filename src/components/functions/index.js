@@ -1,4 +1,5 @@
 import moment from "moment";
+import { toast } from 'react-toastify';
 
 const utils = {
     runAlarma: function validateAlarm(list) {
@@ -34,9 +35,7 @@ const utils = {
             
         })
         return duration;
-
-    }
-    
+    }    
 }
 
 
@@ -58,6 +57,25 @@ const functions = {
     }
 }
 
+// funcion para copiar enlace en el potapapeles
+const copyToClipBoard = (link) => {
+    navigator.clipboard.writeText(link)
+        .then(() => {
+        toast.success("se copio el enlace!", {
+            autoClose: 1500,
+            pauseOnHover: false,
+            hideProgressBar: true
+        })
+    })
+        .catch(err => {
+        console.log('Something went wrong', err);
+        toast.error("no se copio!", {
+            autoClose: 1500,
+            pauseOnHover: false,
+            hideProgressBar: true
+        })
+    })
+}
 
 
-export { utils, functions };
+export { utils, functions, copyToClipBoard };

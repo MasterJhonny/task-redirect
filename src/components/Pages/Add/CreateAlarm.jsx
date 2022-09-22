@@ -18,7 +18,6 @@ function CreateAlarm({id}) {
 
 
     function changeCheckboxState(e) {
-        
         const valor = e.target;
         const day = parseInt(valor.value)
 

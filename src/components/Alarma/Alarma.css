@@ -41,8 +41,12 @@
     background-image: url(https://www.svgrepo.com/show/244133/delete-ui.svg);
 }
 
-.icon-delete:hover {
+.icon:hover {
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.icon-copiar {
+    background-image: url(https://img.icons8.com/dusk/344/copy.png);
 }
 
 .load {
