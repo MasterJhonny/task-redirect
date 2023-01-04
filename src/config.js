@@ -1,4 +1,4 @@
 const config = {
-    API_BASE_URL: 'https://back-task-redirect.herokuapp.com/api/v1/'
+    API_BASE_URL: 'https://back-notes-production.up.railway.app/api/v1/'
 }
 export { config };
